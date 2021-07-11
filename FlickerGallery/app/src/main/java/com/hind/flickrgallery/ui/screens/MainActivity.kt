@@ -1,7 +1,8 @@
-package com.hind.flickrgallery
+package com.hind.flickrgallery.ui.screens
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.hind.flickrgallery.R
 
 class MainActivity : AppCompatActivity(){
 
