@@ -11,11 +11,12 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //Open public feeds activity after 1 second
         GlobalScope.launch {
             //Wait for one second in background
             withContext(Dispatchers.Default){
-                delay(1000)
+                delay(UIConstants.MAIN_SCREEN_DELAY_TIME)
             }
             //Navigate to public feeds
             startActivity(Intent(this@MainActivity,PublicFeedsActivity::class.java))
