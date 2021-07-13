@@ -39,17 +39,23 @@ class PublicFeedsActivity : AppCompatActivity(),FeedsViewAdapter.ItemClickListen
      */
     private fun configureSwipeLayout(){
         _binding.swipeLayout.setOnRefreshListener {
-            Toast.makeText(this,"Refreshing", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.refereshing), Toast.LENGTH_SHORT).show()
             _viewModel.fetchFeeds()
         }
     }
 
+    /**
+     * Configure public feeds view.
+     */
     private fun configureFeedsLayout(){
         _binding.adapter = _feedsAdapter
         val layoutManager = GridLayoutManager(this,2)
         _binding.publicFeeds.layoutManager = layoutManager
     }
 
+    /**
+     * Configure observers for swipe layout refresh and feeds update.
+     */
     private fun configureDataObservers(){
         _viewModel.feeds.observe(this, Observer(_feedsAdapter::setFeeds))
         _viewModel.isFetching.observe(this, { _binding.swipeLayout.isRefreshing = it })
@@ -60,8 +66,13 @@ class PublicFeedsActivity : AppCompatActivity(),FeedsViewAdapter.ItemClickListen
         _feedsAdapter.setItemClickListener(this)
     }
 
+    /**
+     * Callback method for Public feeds item selection.
+     * @param item Feed selected.
+     */
     override fun onItemClick(item: Feed) {
         _feedsAdapter.setItemClickListener(null)
+        //Start Feed details activity.
         val intent = Intent(this,FeedDetailsActivity::class.java)
         intent.putExtra(UIConstants.INTENT_KEY_FEED, Gson().toJson(item))
         startActivity(intent)
