@@ -34,6 +34,9 @@ class PublicFeedsActivity : AppCompatActivity(),FeedsViewAdapter.ItemClickListen
         _viewModel.fetchFeeds()
     }
 
+    /**
+     * Configure swipe layout
+     */
     private fun configureSwipeLayout(){
         _binding.swipeLayout.setOnRefreshListener {
             Toast.makeText(this,"Refreshing", Toast.LENGTH_SHORT).show()
@@ -59,9 +62,9 @@ class PublicFeedsActivity : AppCompatActivity(),FeedsViewAdapter.ItemClickListen
 
     override fun onItemClick(item: Feed) {
         _feedsAdapter.setItemClickListener(null)
-//        val intent = Intent(this,FeedDetailsActivity::class.java)
-//        intent.putExtra("feed", Gson().toJson(item))
-//        startActivity(intent)
+        val intent = Intent(this,FeedDetailsActivity::class.java)
+        intent.putExtra(UIConstants.INTENT_KEY_FEED, Gson().toJson(item))
+        startActivity(intent)
     }
 
 }

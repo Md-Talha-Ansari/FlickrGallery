@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hind.flickrgallery.ui.viewmodels.PublicFeedsItemViewModel" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/background_light"
@@ -10,5 +17,10 @@
         android:id="@+id/feed_image"
         android:layout_height="@dimen/feeds_item_height"
         android:layout_width="match_parent"
+        app:imageUrl="@{viewModel.feed.media.m}"
+        app:placeholder = "@{@drawable/ic_image_load_failed}"
+        android:scaleType="centerCrop"
         android:contentDescription="TODO" />
 </LinearLayout>
+</layout>
+

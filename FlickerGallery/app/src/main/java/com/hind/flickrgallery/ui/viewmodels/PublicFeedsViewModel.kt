@@ -10,6 +10,7 @@ import com.hind.flickrgallery.businesslogic.http.FlickrServiceEndpoints
 import com.hind.flickrgallery.businesslogic.models.request.publicfeeds.PublicFeedsRequest
 import com.hind.flickrgallery.businesslogic.models.response.publicfeeds.Feed
 import com.hind.flickrgallery.businesslogic.models.response.publicfeeds.PublicFeeds
+import com.hind.flickrgallery.ui.adapters.FeedsViewAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +19,7 @@ class PublicFeedsViewModel : ViewModel() {
     private val _publicFeeds = MutableLiveData<PublicFeeds>()
     private val _feeds = MutableLiveData<List<Feed>>(emptyList())
     val feeds:LiveData<List<Feed>> = _feeds
-    private val _isFetching = MutableLiveData<Boolean>(false)
+    private val _isFetching = MutableLiveData(false)
     val isFetching:LiveData<Boolean> = _isFetching
 
     /**
@@ -50,5 +51,4 @@ class PublicFeedsViewModel : ViewModel() {
             }
         })
     }
-
 }
