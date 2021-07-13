@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hind.flickrgallery.R
 import com.hind.flickrgallery.businesslogic.models.response.publicfeeds.Feed
+import com.hind.flickrgallery.databinding.PublicFeedsItemBinding
+import com.hind.flickrgallery.ui.viewmodels.PublicFeedsItemViewModel
 
 class FeedsViewAdapter(feeds: List<Feed>) : RecyclerView.Adapter<FeedsViewAdapter.ViewHolder>() {
 
     private var _feeds:List<Feed> = feeds
     private var _itemClickListener:ItemClickListener? = null
-
-    constructor(feeds: List<Feed>,itemClickListener: ItemClickListener?):this(feeds){
-        _itemClickListener = itemClickListener
-    }
 
     /**
      * Method to update the feeds list.
@@ -39,22 +37,14 @@ class FeedsViewAdapter(feeds: List<Feed>) : RecyclerView.Adapter<FeedsViewAdapte
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.public_feeds_item,parent,false)
-        val viewHolder = ViewHolder(view)
-        return viewHolder
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = PublicFeedsItemBinding.inflate(inflater,parent,false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //set the item click listener for list items
-        holder.itemView.setOnClickListener {
-            _itemClickListener?.onItemClick(_feeds[position])
-        }
-        if(position < _feeds.count()){
-            Glide.with(holder.itemView)
-                .load(_feeds[position].media.m.toUri())
-                .centerCrop()
-                .into(holder.imageView)
-        }
+        //Bind view holder
+        holder.bind(_feeds[position],_itemClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -72,8 +62,18 @@ class FeedsViewAdapter(feeds: List<Feed>) : RecyclerView.Adapter<FeedsViewAdapte
         fun onItemClick(item:Feed)
     }
 
-    class ViewHolder(view: View):RecyclerView.ViewHolder(view){
-        val imageView:ImageView = view.findViewById(R.id.feed_image)
+    /**
+     * View holder class for  public feeds item.
+     * @param binding Binding for item.
+     */
+    class ViewHolder(private val binding: PublicFeedsItemBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(item: Feed,clickListener: ItemClickListener?){
+            binding.viewModel = PublicFeedsItemViewModel(item)
+            //If click listener is set
+            binding.root.setOnClickListener {
+                clickListener?.onItemClick(item)
+            }
+        }
     }
 
 }
