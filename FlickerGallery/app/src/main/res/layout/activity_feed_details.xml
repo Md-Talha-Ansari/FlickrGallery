@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hind.flickrgallery.ui.viewmodels.FeedDetailsViewModel" />
+    </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.screens.FeedDetailsActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_author"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
+            android:text="@string/author"/>
+
+        <TextView
+            android:id="@+id/author"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/lbl_author"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
+            android:text="@{viewModel.feedDetails.author}"/>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/author"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/feeds_image_background"
+            app:imageUrl="@{viewModel.feedDetails.media.m}"
+            app:placeholder = "@{@drawable/ic_image_load_failed}"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/lbl_time_taken"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:text="Taken at :"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/time_taken"-->
+<!--            style="@style/feed_detail_text"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/image"-->
+<!--            app:layout_constraintLeft_toRightOf="@id/lbl_time_taken"-->
+<!--            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"-->
+<!--            android:text="@{viewModel.feedDetails.date_taken}"-->
+<!--            app:rawDateText="@{viewModel.feedDetails.date_taken}"/>-->
+
+        <TextView
+            android:id="@+id/time_taken"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintLeft_toRightOf="@id/lbl_time_taken"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            app:rawDateText="@{viewModel.feedDetails.date_taken}"
+            app:fromFormat="@{@string/taken_date_format}"
+            app:toFormat="@{@string/user_readable_date_format}"/>
+
+        <TextView
+            android:id="@+id/lbl_time_publish"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toBottomOf="@id/time_taken"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:text="@string/publish_on"/>
+
+        <TextView
+            android:id="@+id/time_publish"
+            style="@style/feed_detail_text"
+            app:layout_constraintTop_toBottomOf="@id/time_taken"
+            app:layout_constraintLeft_toRightOf="@id/lbl_time_publish"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            app:rawDateText="@{viewModel.feedDetails.published}"
+            app:fromFormat="@{@string/published_date_format}"
+            app:toFormat="@{@string/user_readable_date_format}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>
