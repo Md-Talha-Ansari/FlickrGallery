@@ -59,6 +59,13 @@ class PublicFeedsActivity : AppCompatActivity(),FeedsViewAdapter.ItemClickListen
     private fun configureDataObservers(){
         _viewModel.feeds.observe(this, Observer(_feedsAdapter::setFeeds))
         _viewModel.isFetching.observe(this, { _binding.swipeLayout.isRefreshing = it })
+        _viewModel.refereshStatus.observe(this, Observer {
+            if (it == UIConstants.FEEDS_REFERESHED) {
+                Toast.makeText(this, R.string.feeds_fetched, Toast.LENGTH_SHORT).show()
+            } else if (it == UIConstants.ERROR_CANNOT_REFRESH_FEEDS) {
+                Toast.makeText(this, R.string.feeds_not_fetched, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onResume() {

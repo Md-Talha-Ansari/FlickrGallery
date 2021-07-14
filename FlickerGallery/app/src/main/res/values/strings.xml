@@ -18,4 +18,6 @@
     <string name="decline">decline</string>
     <string name="file_not_saved">Cannot save file.</string>
     <string name="file_saved">File saved to gallery.</string>
+    <string name="feeds_fetched">Public feeds updated successfully.</string>
+    <string name="feeds_not_fetched">Public feeds not updated.</string>
 </resources>

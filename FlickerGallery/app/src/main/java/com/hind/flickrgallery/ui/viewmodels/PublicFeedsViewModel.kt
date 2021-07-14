@@ -11,6 +11,7 @@ import com.hind.flickrgallery.businesslogic.models.request.publicfeeds.PublicFee
 import com.hind.flickrgallery.businesslogic.models.response.publicfeeds.Feed
 import com.hind.flickrgallery.businesslogic.models.response.publicfeeds.PublicFeeds
 import com.hind.flickrgallery.ui.adapters.FeedsViewAdapter
+import com.hind.flickrgallery.ui.screens.UIConstants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +30,10 @@ class PublicFeedsViewModel : ViewModel() {
      */
     fun fetchFeeds(){
         //Set isFetching to true to show spinner
+        if(_isFetching.value == true){
+            return
+        }
+        _refereshStatus.value = UIConstants.STATE_IDEAL
         _isFetching.value = true
         //Create public feeds request
         val request = PublicFeedsRequest(null,null,tags = null)
@@ -40,9 +45,11 @@ class PublicFeedsViewModel : ViewModel() {
                     Log.d("Public feeds success : ", response.body().toString())
                     _publicFeeds.value = response.body()
                     _feeds.value = _publicFeeds.value?.items
+                    _refereshStatus.value = UIConstants.FEEDS_REFERESHED
                 }else{
                     //Request failed show error message
                     Log.d("Public feeds error : ", response.errorBody().toString())
+                    _refereshStatus.value = UIConstants.ERROR_CANNOT_REFRESH_FEEDS
                 }
                 _isFetching.value = false
             }
@@ -50,6 +57,7 @@ class PublicFeedsViewModel : ViewModel() {
                 //Exception occurred notify user
                 Log.d("Public feeds failure: ", t.localizedMessage)
                 _isFetching.value = false
+                _refereshStatus.value = UIConstants.ERROR_CANNOT_REFRESH_FEEDS
             }
         })
     }

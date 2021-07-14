@@ -8,4 +8,6 @@ object UIConstants {
     const val FILE_SAVED = 1
     const val ERROR_CANNOT_SAVE_IMAGE = 2
     const val ERROR_CANNOT_REFRESH_FEEDS = 3
+    const val FEEDS_REFERESHED = 4
+
 }
