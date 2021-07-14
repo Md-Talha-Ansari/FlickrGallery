@@ -20,7 +20,7 @@
         app:imageUrl="@{viewModel.feed.media.m}"
         app:placeholder = "@{@drawable/ic_image_load_failed}"
         android:scaleType="centerCrop"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/feed_image" />
 </LinearLayout>
 </layout>
 

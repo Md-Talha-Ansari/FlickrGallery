@@ -9,4 +9,13 @@
     <string name="author">Author :</string>
     <string name="publish_on">Published on :</string>
     <string name="taken_at">Taken at :</string>
+    <string name="refereshing">Refreshing</string>
+    <string name="email_icon_content_description">Email current feed image.</string>
+    <string name="save_icon_content_description">Save current feed image to storage.</string>
+    <string name="feed_image">Feed image.</string>
+    <string name="storage_permission_required">Application requires storage permission to save images.</string>
+    <string name="allow">Allow</string>
+    <string name="decline">decline</string>
+    <string name="file_not_saved">Cannot save file.</string>
+    <string name="file_saved">File saved to gallery.</string>
 </resources>

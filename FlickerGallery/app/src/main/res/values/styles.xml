@@ -15,12 +15,19 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    
+
     <style name="feed_detail_text" parent="Widget.AppCompat.TextView">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="image_button_icon_small" parent="Widget.AppCompat.Button">
+        <item name="android:layout_height">@dimen/icon_height_small</item>
+        <item name="android:layout_width">@dimen/icon_width_small</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:tint">@color/colorPrimary</item>
     </style>
 
 </resources>

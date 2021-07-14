@@ -7,4 +7,6 @@
     <dimen name="feeds_item_margin">5dp</dimen>
     <dimen name="feed_detail_items_margin">5dp</dimen>
     <dimen name="feeds_image_border_width">1dp</dimen>
+    <dimen name="icon_height_small">30dp</dimen>
+    <dimen name="icon_width_small">30dp</dimen>
 </resources>

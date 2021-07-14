@@ -40,33 +40,63 @@
             app:layout_constraintTop_toBottomOf="@+id/author"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
             android:background="@drawable/feeds_image_background"
             app:imageUrl="@{viewModel.feedDetails.media.m}"
             app:placeholder = "@{@drawable/ic_image_load_failed}"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/feed_image" />
+
+        <ImageButton
+            android:id="@+id/btn_save_image"
+            style="@style/image_button_icon_small"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:src="@drawable/ic_save"
+            android:contentDescription="@string/save_icon_content_description"
+            android:onClick="onSaveImage"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_send_email"
+            style="@style/image_button_icon_small"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintLeft_toRightOf="@id/btn_save_image"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:src="@drawable/ic_email"
+            android:contentDescription="@string/email_icon_content_description"
+            android:onClick="onEmail"
+            />
+
+        <ImageButton
+            android:id="@+id/btn_open_in_browser"
+            style="@style/image_button_icon_small"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintLeft_toRightOf="@id/btn_send_email"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
+            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
+            android:src="@drawable/ic_open_in_browser"
+            android:contentDescription="@string/email_icon_content_description"
+            android:onClick="onOpenInBrowser"
+            />
 
         <TextView
             android:id="@+id/lbl_time_taken"
             style="@style/feed_detail_text"
-            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/btn_save_image"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
             android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
-            android:text="Taken at :"/>
-
-<!--        <TextView-->
-<!--            android:id="@+id/time_taken"-->
-<!--            style="@style/feed_detail_text"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/image"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/lbl_time_taken"-->
-<!--            android:layout_marginHorizontal="@dimen/feed_detail_items_margin"-->
-<!--            android:text="@{viewModel.feedDetails.date_taken}"-->
-<!--            app:rawDateText="@{viewModel.feedDetails.date_taken}"/>-->
+            android:text="@string/taken_at"/>
 
         <TextView
             android:id="@+id/time_taken"
             style="@style/feed_detail_text"
-            app:layout_constraintTop_toBottomOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/btn_save_image"
             app:layout_constraintLeft_toRightOf="@id/lbl_time_taken"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
             android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
             app:rawDateText="@{viewModel.feedDetails.date_taken}"
             app:fromFormat="@{@string/taken_date_format}"
@@ -77,6 +107,7 @@
             style="@style/feed_detail_text"
             app:layout_constraintTop_toBottomOf="@id/time_taken"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
             android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
             android:text="@string/publish_on"/>
 
@@ -85,6 +116,7 @@
             style="@style/feed_detail_text"
             app:layout_constraintTop_toBottomOf="@id/time_taken"
             app:layout_constraintLeft_toRightOf="@id/lbl_time_publish"
+            android:layout_marginTop="@dimen/feed_detail_items_margin"
             android:layout_marginHorizontal="@dimen/feed_detail_items_margin"
             app:rawDateText="@{viewModel.feedDetails.published}"
             app:fromFormat="@{@string/published_date_format}"

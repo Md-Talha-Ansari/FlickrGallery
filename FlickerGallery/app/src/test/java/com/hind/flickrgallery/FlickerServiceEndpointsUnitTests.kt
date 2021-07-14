@@ -1,6 +1,7 @@
 package com.hind.flickrgallery
 
 import android.util.Log
+import com.hind.flickrgallery.businesslogic.http.FlickerService
 import com.hind.flickrgallery.businesslogic.http.FlickrServiceBuilder
 import com.hind.flickrgallery.businesslogic.http.FlickrServiceEndpoints
 import com.hind.flickrgallery.businesslogic.models.request.publicfeeds.PublicFeedsRequest
@@ -13,8 +14,7 @@ class FlickerServiceEndpointsUnitTests {
     fun publicFeedsSuccessTest(){
 
         val request = PublicFeedsRequest(null,null,null)
-        val service = FlickrServiceBuilder.buildService(FlickrServiceEndpoints::class.java)
-        val call = service.getPublicFeeds(request.toMap())
+        val call = FlickerService.getPublicFeeds(request)
         try{
             val resposne = call.execute()
             if(resposne.isSuccessful && resposne.code() == 200){
@@ -31,8 +31,7 @@ class FlickerServiceEndpointsUnitTests {
     fun publicFeedsFailureTest(){
 
         val request = PublicFeedsRequest(null,null,null)
-        val service = FlickrServiceBuilder.buildService(FlickrServiceEndpoints::class.java)
-        val call = service.getPublicFeeds(request.toMap())
+        val call = FlickerService.getPublicFeeds(request)
         try{
             val resposne = call.execute()
             if(!resposne.isSuccessful && resposne.code() != 200){
