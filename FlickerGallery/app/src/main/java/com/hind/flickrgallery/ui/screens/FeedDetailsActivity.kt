@@ -98,20 +98,26 @@ class FeedDetailsActivity : AppCompatActivity() {
         }
     }
 
-
-
+    /**
+     * Method to save image.
+     */
     private fun saveImage(){
         GlobalScope.launch {
             _viewModel.saveImage(_binding.image.drawable.toBitmap(),contentResolver)
         }
     }
 
+    /**
+     * Click listener for onEmail button.
+     * @param view OnEmail button.
+     */
     fun onEmail(view: View) {
 
     }
 
     /**
      * Open current feed image in browser.
+     * @param view openInBrowserButton.
      */
     fun onOpenInBrowser(view: View) {
         if(_viewModel.feedDetails.value?.media != null){
@@ -120,7 +126,5 @@ class FeedDetailsActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 
 }
