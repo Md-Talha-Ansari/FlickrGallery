@@ -112,7 +112,13 @@ class FeedDetailsActivity : AppCompatActivity() {
      * @param view OnEmail button.
      */
     fun onEmail(view: View) {
-
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        //TODO
+        //Save image and pass as uri
+        //intent.putExtra(Intent.EXTRA_STREAM, );
+        intent.setType("image/png");
+        startActivity(Intent.createChooser(intent, _viewModel.feedDetails.value?.title))
     }
 
     /**
