@@ -29,13 +29,14 @@ class FeedDetailsViewModel : ViewModel() {
     val feedDetails:LiveData<Feed> = _feedDetails
 
     private val _fileWriteStatus = MutableLiveData<Int>()
-    public val fileWriteStatus:LiveData<Int> = _fileWriteStatus
+    val fileWriteStatus:LiveData<Int> = _fileWriteStatus
 
     fun setFeedDetails(feed:Feed){
         _feedDetails.value = feed
     }
 
     suspend fun saveImage(bitmap: Bitmap,contentResolver:ContentResolver?) = withContext(Dispatchers.IO){
+        _fileWriteStatus.value = UIConstants.STATE_IDEAL
         val fileUri = Uri.parse(feedDetails.value?.media?.m)
         var fileName:String = "${System.currentTimeMillis()}.jpg"
         fileUri?.lastPathSegment?.also { fileName = it }
@@ -72,7 +73,7 @@ class FeedDetailsViewModel : ViewModel() {
         }
         if(outputStream != null){
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream)
-            _fileWriteStatus.value = UIConstants.STATE_IDEAL
+            _fileWriteStatus.value = UIConstants.FILE_SAVED
         }
     }
 }

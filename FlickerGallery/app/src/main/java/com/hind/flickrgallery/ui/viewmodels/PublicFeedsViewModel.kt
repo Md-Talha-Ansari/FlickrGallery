@@ -21,6 +21,8 @@ class PublicFeedsViewModel : ViewModel() {
     val feeds:LiveData<List<Feed>> = _feeds
     private val _isFetching = MutableLiveData(false)
     val isFetching:LiveData<Boolean> = _isFetching
+    private val _refereshStatus = MutableLiveData<Int>()
+    val refereshStatus:LiveData<Int> = _refereshStatus
 
     /**
      * Method to fetch latest feeds from server asynchronously.
