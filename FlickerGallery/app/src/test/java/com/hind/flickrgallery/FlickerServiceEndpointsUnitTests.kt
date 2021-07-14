@@ -34,7 +34,7 @@ class FlickerServiceEndpointsUnitTests {
         val call = FlickerService.getPublicFeeds(request)
         try{
             val resposne = call.execute()
-            if(!resposne.isSuccessful && resposne.code() != 200){
+            if(!resposne.isSuccessful || resposne.code() != 200){
                 assert(resposne.body() != null){
                     Log.d(TAG, resposne.body().toString())
                 }
